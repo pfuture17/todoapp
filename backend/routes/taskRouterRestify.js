@@ -46,9 +46,8 @@ module.exports = (app) => {
                     id: req.params.id,
                 },
             }
-        ).then((data) => {
-            res.send(data);
-            next();
+        ).then(() => {
+            db.Task.findByPk(req.params.id).then((data) => res.send(data));
         });
     });
     //delete
