@@ -10,11 +10,7 @@ module.exports = (app) => {
     });
     //GET BY ID
     app.get('/:id', (req, res, next) => {
-        db.Task.findAll({
-            where: {
-                id: req.params.id,
-            },
-        })
+        db.Task.findByPk(req.params.id)
             .then((data) => {
                 res.send(data);
                 next();
@@ -48,6 +44,7 @@ module.exports = (app) => {
             }
         ).then(() => {
             db.Task.findByPk(req.params.id).then((data) => res.send(data));
+            next();
         });
     });
     //delete
